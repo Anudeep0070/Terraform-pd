@@ -80,7 +80,7 @@ terraform {
   backend "s3" {
     #Replace this with your bucket name!
     bucket         = "terraform-state"
-    key            = "s3/terraform.tfstate"
+    key            = "pd/s3/terraform.tfstate"
     region         = "us-east-1"
     access_key = "AKIAVFXNYMGJ4CUKI7PP"
   secret_key = "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"
