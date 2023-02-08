@@ -38,7 +38,10 @@ resource "pagerduty_service" "unrouted" {
   acknowledgement_timeout = 600
   escalation_policy       = pagerduty_escalation_policy.Ciscoescalationpolicy1.id
   alert_creation          = "create_incidents"
-  
+  incident_urgency_rule {
+      type    = "constant"
+      urgency = "low"
+    }
 }
 
 
