@@ -41,7 +41,7 @@ resource "pagerduty_team_membership" "cisco-terraformteam2" {
 #escalation policy
 
 resource "pagerduty_escalation_policy" "Ciscoescalationpolicy1" {
-  name      = "Cisco Escalation Policy"
+  name      = "Cisco Escalation Policy1"
   num_loops = 2
   teams     = ["PS2RTWK"]
 
