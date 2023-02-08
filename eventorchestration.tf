@@ -82,9 +82,6 @@ resource "pagerduty_event_orchestration_router" "router" {
       actions {
         route_to = pagerduty_service.warningservice.id
       }
-      severity {
-      value = "warning"
-       }
     }
   } 
   catch_all {
