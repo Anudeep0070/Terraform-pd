@@ -60,7 +60,7 @@ resource "pagerduty_escalation_policy" "Ciscoescalationpolicy" {
 
 #code to backup terraform state file
 provider "aws" {
-   region ="${var.region}"
+   region ="us-east-1"
    access_key = "AKIAVFXNYMGJ4CUKI7PP"
   secret_key = "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"
    }
