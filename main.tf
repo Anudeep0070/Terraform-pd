@@ -5,6 +5,9 @@ data "pagerduty_user" "AnudeepVaduka" {
 data "pagerduty_team" "cisco-terraformteam" {
   name = "cisco-terraformteam"
 }
+data "pagerduty_priority" "p1" {
+  name = "P1"
+}
 resource "pagerduty_user" "user1" {
   name = "Saroj Kumar"
   role    = "admin"
