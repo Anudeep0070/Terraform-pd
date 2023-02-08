@@ -1,8 +1,5 @@
 #orchestration
 
-data "pagerduty_team" "cisco-terraformteam" {
-  name = "cisco-terraformteam"
-}
 resource "pagerduty_event_orchestration" "my_orchest" {
   name = "Cisco Orchestration"
   description = "Send events to a pair of services"
