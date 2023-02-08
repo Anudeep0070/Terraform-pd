@@ -66,9 +66,6 @@ resource "pagerduty_event_orchestration_router" "router" {
       condition {
         expression = "event.source matches part 'prod-datapipe03'"
       }
-      condition {
-        expression = "event.severity  matches 'critical'"
-      }
       actions {
         route_to = pagerduty_service.serverservice.id
       }
