@@ -57,7 +57,8 @@ resource "pagerduty_service" "unrouted" {
   alert_grouping_parameters{
     type   = "content_based"
     config{
-      fields = ["summary"]
+      aggregate = "all"
+      fields = ["summary","severity"]
     }
   }
 }
