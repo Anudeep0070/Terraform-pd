@@ -4,7 +4,7 @@ data "pagerduty_team" "cisco-terraformteam" {
   name = "cisco-terraformteam"
 }
 resource "pagerduty_event_orchestration" "my_orchest" {
-  name = "My Monitoring Orchestration"
+  name = "Cisco Orchestration"
   description = "Send events to a pair of services"
   team = data.pagerduty_team.cisco-terraformteam.id
 }
@@ -25,6 +25,14 @@ resource "pagerduty_service" "criticalservice" {
   escalation_policy       = pagerduty_escalation_policy.Ciscoescalationpolicy.id
   alert_creation          = "create_incidents"
   
+}
+
+resource "pagerduty_service" "warningservice" {
+  name                    = "warningservice"
+  auto_resolve_timeout    = 14400
+  acknowledgement_timeout = 600
+  escalation_policy       = pagerduty_escalation_policy.Ciscoescalationpolicy.id
+  alert_creation          = "create_incidents"  
 }
 
 resource "pagerduty_service" "unrouted" {
@@ -51,7 +59,6 @@ resource "pagerduty_event_orchestration_router" "router" {
       actions {
         route_to = pagerduty_service.criticalservice.id
       }
-    
     }
     
     rule {
@@ -67,6 +74,16 @@ resource "pagerduty_event_orchestration_router" "router" {
       }
       actions {
         route_to = pagerduty_service.serverservice.id
+      }
+    }
+    
+    rule {
+        label = "warning alerts"
+      condition {
+        expression = "event.severity  matches 'warning'"
+      }
+      actions {
+        route_to = pagerduty_service.warningservice.id
       }
     }
   } 
