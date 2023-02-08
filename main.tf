@@ -57,3 +57,32 @@ resource "pagerduty_escalation_policy" "Ciscoescalationpolicy" {
     }
   }
 }
+
+#code to backup terraform state file
+provider "aws" {
+   region ="${var.region}"
+   access_key = "AKIAVFXNYMGJ4CUKI7PP"
+  secret_key = "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"
+   }
+
+resource "aws_s3_bucket" "terraform_state_s3" {
+ bucket = "terraform-grafana-pagerduty-state"
+}
+
+resource "aws_s3_bucket_versioning" "terraform_version" {
+ bucket = aws_s3_bucket.terraform_state_s3.id
+ versioning_configuration {
+  status = "Enabled"
+  }
+}
+
+terraform {
+  backend "s3" {
+    #Replace this with your bucket name!
+    bucket         = "terraform-grafana-pagerduty-state"
+    key            = "pd/s3/terraform"
+    region         = "us-east-1"
+    access_key = "AKIAVFXNYMGJ4CUKI7PP"
+  secret_key = "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"
+        }
+}
