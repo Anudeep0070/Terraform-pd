@@ -54,6 +54,12 @@ resource "pagerduty_service" "unrouted" {
       type    = "constant"
       urgency = "severity_based"
     }
+  alert_grouping_parameters{
+    type   = "content_based"
+    config{
+      fields = "summary"
+    }
+  }
 }
 
 
