@@ -11,7 +11,7 @@ resource "pagerduty_service" "serverservice" {
   auto_resolve_timeout    = 14400
   acknowledgement_timeout = 600
   escalation_policy       = pagerduty_escalation_policy.Ciscoescalationpolicy1.id
-  alert_creation          = "create_incidents"
+  alert_creation          = "create_alerts_and_incidents"
   incident_urgency_rule {
       type    = "constant"
       urgency = "severity_based"
@@ -24,7 +24,7 @@ resource "pagerduty_service" "criticalservice" {
   auto_resolve_timeout    = 14400
   acknowledgement_timeout = 600
   escalation_policy       = pagerduty_escalation_policy.Ciscoescalationpolicy1.id
-  alert_creation          = "create_incidents"
+  alert_creation          = "create_alerts_and_incidents"
   incident_urgency_rule {
       type    = "constant"
       urgency = "severity_based"
@@ -37,7 +37,7 @@ resource "pagerduty_service" "warningservice" {
   auto_resolve_timeout    = 14400
   acknowledgement_timeout = 600
   escalation_policy       = pagerduty_escalation_policy.Ciscoescalationpolicy1.id
-  alert_creation          = "create_incidents"
+  alert_creation          = "create_alerts_and_incidents"
   incident_urgency_rule {
       type    = "constant"
       urgency = "severity_based"
@@ -49,7 +49,7 @@ resource "pagerduty_service" "unrouted" {
   auto_resolve_timeout    = 14400
   acknowledgement_timeout = 600
   escalation_policy       = pagerduty_escalation_policy.Ciscoescalationpolicy1.id
-  alert_creation          = "create_incidents"
+  alert_creation          = "create_alerts_and_incidents"
   incident_urgency_rule {
       type    = "constant"
       urgency = "severity_based"
