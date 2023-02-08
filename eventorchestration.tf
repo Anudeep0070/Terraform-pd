@@ -12,6 +12,10 @@ resource "pagerduty_service" "serverservice" {
   acknowledgement_timeout = 600
   escalation_policy       = pagerduty_escalation_policy.Ciscoescalationpolicy1.id
   alert_creation          = "create_incidents"
+  incident_urgency_rule {
+      type    = "constant"
+      urgency = "severity_based"
+    }
   
 }
 
@@ -21,6 +25,10 @@ resource "pagerduty_service" "criticalservice" {
   acknowledgement_timeout = 600
   escalation_policy       = pagerduty_escalation_policy.Ciscoescalationpolicy1.id
   alert_creation          = "create_incidents"
+  incident_urgency_rule {
+      type    = "constant"
+      urgency = "severity_based"
+    }
   
 }
 
@@ -29,7 +37,11 @@ resource "pagerduty_service" "warningservice" {
   auto_resolve_timeout    = 14400
   acknowledgement_timeout = 600
   escalation_policy       = pagerduty_escalation_policy.Ciscoescalationpolicy1.id
-  alert_creation          = "create_incidents"  
+  alert_creation          = "create_incidents"
+  incident_urgency_rule {
+      type    = "constant"
+      urgency = "severity_based"
+    }
 }
 
 resource "pagerduty_service" "unrouted" {
@@ -40,7 +52,7 @@ resource "pagerduty_service" "unrouted" {
   alert_creation          = "create_incidents"
   incident_urgency_rule {
       type    = "constant"
-      urgency = "low"
+      urgency = "severity_based"
     }
 }
 
@@ -81,7 +93,6 @@ resource "pagerduty_event_orchestration_router" "router" {
       }
       actions {
         route_to = pagerduty_service.warningservice.id
-        severity = "warning"
       }
     }
   } 
