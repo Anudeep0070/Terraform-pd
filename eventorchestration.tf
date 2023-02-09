@@ -29,7 +29,13 @@ resource "pagerduty_service" "criticalservice" {
       type    = "constant"
       urgency = "severity_based"
     }
-  
+  alert_grouping_parameters{
+    type   = "content_based"
+    config{
+      aggregate = "all"
+      fields = ["summary","severity"]
+    }
+  }
 }
 
 resource "pagerduty_service" "warningservice" {
